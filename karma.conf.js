@@ -51,12 +51,8 @@ module.exports = function(config) {
 
     coverageReporter: {
       dir: 'coverage/',
-      reporters: [{
-        type: 'html'
-      }, {
-        type: 'cobertura',
-        file: 'clover.xml'
-      }]
+      type: "lcov",
+      file: "lcov.info"
     },
 
     // web server port
@@ -87,6 +83,12 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultanous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    client: {
+      mocha: {
+        ui: 'tdd'
+      }
+    }
   });
 };
