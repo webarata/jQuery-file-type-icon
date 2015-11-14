@@ -1,0 +1,24 @@
+{
+  "nonew": true,
+  "curly": true,
+  "noarg": true,
+  "forin": true,
+  "noempty": true,
+  "eqeqeq": true,
+  "strict": true,
+  "undef": true,
+  "bitwise": true,
+  "browser": true,
+  "devel": true,
+  "eqnull": true,
+  "globals": {
+    "jQuery": false,
+    "$": false,
+    "suite": false,
+    "setup": false,
+    "teardown": false,
+    "__html__": false,
+    "test": false,
+    "assert": false
+  }
+}
