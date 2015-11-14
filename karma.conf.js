@@ -49,6 +49,15 @@ module.exports = function(config) {
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['progress', 'coverage'],
 
+    coverageReporter: {
+      dir: 'coverage/',
+      reporters: [{
+        type: 'html'
+      }, {
+        type: 'cobertura',
+        file: 'clover.xml'
+      }]
+    },
 
     // web server port
     port: 9876,
