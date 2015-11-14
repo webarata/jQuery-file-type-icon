@@ -16,7 +16,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       '../../../node_modules/jquery/dist/jquery.min.js',
-      'js/jquery.file-type-icon.min.js',
+      'jssrc/jquery.file-type-icon.js',
       'test/**/*.js',
       'test/**/*.html',
       // 画像ファイルのロード http://karma-runner.github.io/0.12/config/files.html
@@ -39,14 +39,15 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'test/**/*.html': ['html2js']
+      'test/**/*.html': ['html2js'],
+      'jssrc/jquery.file-type-icon.js': ['coverage']
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['dots'],
+    reporters: ['progress', 'coverage'],
 
 
     // web server port
