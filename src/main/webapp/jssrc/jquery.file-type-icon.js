@@ -28,7 +28,8 @@
     pptx: 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
   };
 
-  $.fn.fileTypeIcon = function(options) {
+
+  var init = function(options) {
     var settings = $.extend(_defaults, options);
     _initTypeIcon();
 
@@ -207,6 +208,24 @@
       var imageRuntime = image.runtimeStyle;
       imageRuntime.width = natural.width * ratio[shorter] + 'px';
       imageRuntime.height = natural.height * ratio[shorter] + 'px';
+    }
+  };
+
+  var methods = {
+    init: init,
+    getContentType: function() {
+    }
+  };
+
+  // http://qiita.com/k4zzk/items/11e5dbd53cb93edb8b4d
+  $.fn.fileTypeIcon = function(method) {
+    // メソッド呼び出し部分
+    if (methods[method]) {
+      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+    } else if (typeof method === 'object' || !method) {
+      return methods.init.apply(this, arguments);
+    } else {
+      $.error('Method ' + method + ' does not exist on jQuery.tooltip');
     }
   };
 })(jQuery);
