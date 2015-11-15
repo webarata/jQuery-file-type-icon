@@ -4,7 +4,7 @@ suite('fileTypeIconのテスト', function() {
   var LOADING_WAIT = 300;
 
   setup(function() {
-    document.body.innerHTML = __html__['test/test.html'];
+    document.body.innerHTML = __html__['test/jquery.file-type-icon.test.html'];
   });
 
   teardown(function() {
@@ -114,6 +114,30 @@ suite('fileTypeIconのテスト', function() {
     var $fixture = $('#fixture');
     $fixture.fileTypeIcon({
       imageDir: 'image/',
+      imageSize: {
+        width: 64,
+        height: 256
+      }
+    });
+
+    setTimeout(function() {
+      var $image = $fixture.find('img');
+      assert.equal($image.length, 1, '画像が挿入されている');
+      assert.equal($image.css('width'), '64px');
+      assert.equal($image.css('height'), '64px');
+      assert.equal($image.css('top'), '96px');
+      assert.equal($image.css('left'), '0px');
+      done();
+    }, LOADING_WAIT);
+  });
+
+  test('fileTypeIcon ファイルタイプをimage/pngのテスト', function(done) {
+    var $fixture = $('#fixture');
+    $fixture.fileTypeIcon({
+      imageDir: 'image/',
+      file: {
+        type: 'image/png'
+      },
       imageSize: {
         width: 64,
         height: 256
