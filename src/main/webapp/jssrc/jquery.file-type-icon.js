@@ -28,17 +28,7 @@
     pptx: 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
   };
 
-  var _initTypeIcon = function() {
-    _typeIcon[_extType.pdf] = 'pdf-256.png';
-    _typeIcon[_extType.doc] = 'word-256.png';
-    _typeIcon[_extType.docx] = 'word-256.png';
-    _typeIcon[_extType.xls] = 'excel-256.png';
-    _typeIcon[_extType.xlsx] = 'excel-256.png';
-    _typeIcon[_extType.ppt] = 'powerpoint-256.png';
-    _typeIcon[_extType.pptx] = 'powerpoint-256.png';
-  };
-
-  var init = function(options) {
+  $.fn.fileTypeIcon = function(options) {
     var settings = $.extend(_defaults, options);
     _initTypeIcon();
 
@@ -67,6 +57,16 @@
       console.log('reject');
     });
     return this;
+  };
+
+  var _initTypeIcon = function() {
+    _typeIcon[_extType.pdf] = 'pdf-256.png';
+    _typeIcon[_extType.doc] = 'word-256.png';
+    _typeIcon[_extType.docx] = 'word-256.png';
+    _typeIcon[_extType.xls] = 'excel-256.png';
+    _typeIcon[_extType.xlsx] = 'excel-256.png';
+    _typeIcon[_extType.ppt] = 'powerpoint-256.png';
+    _typeIcon[_extType.pptx] = 'powerpoint-256.png';
   };
 
   var _appendInitIcon = function($this, settings) {
@@ -99,9 +99,7 @@
       }
     } else {
       var icon = _typeIcon[settings.type] ? _typeIcon[settings.type] : settings.defaultIcon;
-      if (icon) {
-        innerDfd = _createImage(settings.imageDir + icon, settings);
-      }
+      innerDfd = _createImage(settings.imageDir + icon, settings);
     }
 
     if (innerDfd) {
@@ -210,21 +208,7 @@
     }
   };
 
-  var methods = {
-    init: init,
-    getContentType: function() {
-    }
-  };
-
-  // http://qiita.com/k4zzk/items/11e5dbd53cb93edb8b4d
-  $.fn.fileTypeIcon = function(method) {
-    // メソッド呼び出し部分
-    if (methods[method]) {
-      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
-    } else if (typeof method === 'object' || !method) {
-      return methods.init.apply(this, arguments);
-    } else {
-      $.error('Method ' + method + ' does not exist on jQuery.tooltip');
-    }
-  };
+  $.fileTypeIcon = {a: function() {
+    console.log("aaaa");
+  }};
 })(jQuery);

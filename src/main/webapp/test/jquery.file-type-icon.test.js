@@ -131,7 +131,7 @@ suite('fileTypeIconのテスト', function() {
     }, LOADING_WAIT);
   });
 
-  test('fileTypeIcon ファイルタイプをimage/pngのテスト', function(done) {
+  test('fileTypeIcon ファイルタイプimage/pngのテスト', function(done) {
     var $fixture = $('#fixture');
     $fixture.fileTypeIcon({
       imageDir: 'image/',
@@ -147,10 +147,10 @@ suite('fileTypeIconのテスト', function() {
     setTimeout(function() {
       var $image = $fixture.find('img');
       assert.equal($image.length, 1, '画像が挿入されている');
-      assert.equal($image.css('width'), '64px');
-      assert.equal($image.css('height'), '64px');
-      assert.equal($image.css('top'), '96px');
-      assert.equal($image.css('left'), '0px');
+      assert.equal($image.css('width'), '32px');
+      assert.equal($image.css('height'), '32px');
+      assert.equal($image.css('top'), '112px');
+      assert.equal($image.css('left'), '16px');
       done();
     }, LOADING_WAIT);
   });
