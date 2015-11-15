@@ -28,6 +28,15 @@
     pptx: 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
   };
 
+  var _initTypeIcon = function() {
+    _typeIcon[_extType.pdf] = 'pdf-256.png';
+    _typeIcon[_extType.doc] = 'word-256.png';
+    _typeIcon[_extType.docx] = 'word-256.png';
+    _typeIcon[_extType.xls] = 'excel-256.png';
+    _typeIcon[_extType.xlsx] = 'excel-256.png';
+    _typeIcon[_extType.ppt] = 'powerpoint-256.png';
+    _typeIcon[_extType.pptx] = 'powerpoint-256.png';
+  };
 
   var init = function(options) {
     var settings = $.extend(_defaults, options);
@@ -58,16 +67,6 @@
       console.log('reject');
     });
     return this;
-  };
-
-  var _initTypeIcon = function() {
-    _typeIcon[_extType.pdf] = 'pdf-256.png';
-    _typeIcon[_extType.doc] = 'word-256.png';
-    _typeIcon[_extType.docx] = 'word-256.png';
-    _typeIcon[_extType.xls] = 'excel-256.png';
-    _typeIcon[_extType.xlsx] = 'excel-256.png';
-    _typeIcon[_extType.ppt] = 'powerpoint-256.png';
-    _typeIcon[_extType.pptx] = 'powerpoint-256.png';
   };
 
   var _appendInitIcon = function($this, settings) {
