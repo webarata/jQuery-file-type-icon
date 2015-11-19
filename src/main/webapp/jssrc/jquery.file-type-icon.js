@@ -36,6 +36,7 @@
     if (settings.file && settings.file.type) {
       settings.type = settings.file.type;
     }
+
     var $this = this;
 
     $this.css({
@@ -207,8 +208,4 @@
       imageRuntime.height = natural.height * ratio[shorter] + 'px';
     }
   };
-
-  $.fileTypeIcon = {a: function() {
-    console.log("aaaa");
-  }};
 })(jQuery);

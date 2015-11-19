@@ -11,6 +11,22 @@ suite('fileTypeIconのテスト', function() {
     document.body.innerHTML = '';
   });
 
+  function toBlob(base64) {
+    var bin = atob(base64.replace(/^.*,/, ''));
+    var buffer = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) {
+      buffer[i] = bin.charCodeAt(i);
+    }
+    // Blobを作成
+    try {
+      var blob = new Blob([buffer.buffer], { type: 'image/png' });
+    } catch (e) {
+      console.log(e);
+      return false;
+    }
+    return blob;
+  }
+
   test('fileTypeIcon pdfのアイコン表示チェック', function(done) {
     $('#fixture').fileTypeIcon({
       type: 'application/pdf',
@@ -131,26 +147,29 @@ suite('fileTypeIconのテスト', function() {
     }, LOADING_WAIT);
   });
 
-  test('fileTypeIcon ファイルタイプimage/pngのテスト', function(done) {
+  test('fileTypeIcon 実ファイル（正方形）でのチェック', function(done) {
+    var data = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVQImWP8qNbynwENMKELUEEQAAzqAqQgfOn0AAAAAElFTkSuQmCC';
+    var blob =  toBlob(data);
+    blob.type = 'image/png';
+
     var $fixture = $('#fixture');
     $fixture.fileTypeIcon({
-      imageDir: 'image/',
-      file: {
-        type: 'image/png'
-      },
+      file: blob,
       imageSize: {
-        width: 64,
-        height: 256
+        width: 5,
+        height: 10
       }
     });
+
+    console.log(blob);
 
     setTimeout(function() {
       var $image = $fixture.find('img');
       assert.equal($image.length, 1, '画像が挿入されている');
-      assert.equal($image.css('width'), '32px');
-      assert.equal($image.css('height'), '32px');
-      assert.equal($image.css('top'), '112px');
-      assert.equal($image.css('left'), '16px');
+      assert.equal($image.css('width'), '5px');
+      assert.equal($image.css('height'), '5px');
+      assert.equal($image.css('top'), '2px');
+      assert.equal($image.css('left'), '0px');
       done();
     }, LOADING_WAIT);
   });
