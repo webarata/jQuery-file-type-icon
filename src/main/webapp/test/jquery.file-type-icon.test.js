@@ -21,7 +21,6 @@ suite('fileTypeIconのテスト', function() {
     try {
       var blob = new Blob([buffer.buffer], { type: 'image/png' });
     } catch (e) {
-      console.log(e);
       return false;
     }
     return blob;
@@ -160,8 +159,6 @@ suite('fileTypeIconのテスト', function() {
         height: 10
       }
     });
-
-    console.log(blob);
 
     setTimeout(function() {
       var $image = $fixture.find('img');
