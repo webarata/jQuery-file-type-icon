@@ -270,4 +270,76 @@ suite('fileTypeIconのテスト', function() {
       done();
     }, LOADING_WAIT);
   });
+
+  test('fileTypeIcon 実ファイル（横長）でのチェック 縦長の領域', function(done) {
+    var blob =  toBlob(image10x5);
+    blob.type = 'image/png';
+
+    var $fixture = $('#fixture');
+    $fixture.fileTypeIcon({
+      file: blob,
+      imageSize: {
+        width: 10,
+        height: 20
+      }
+    });
+
+    setTimeout(function() {
+      var $image = $fixture.find('img');
+      assert.equal($image.length, 1, '画像が挿入されている');
+      assert.equal($image.css('width'), '10px');
+      assert.equal($image.css('height'), '5px');
+      assert.equal($image.css('top'), '7px');
+      assert.equal($image.css('left'), '0px');
+      done();
+    }, LOADING_WAIT);
+  });
+
+  test('fileTypeIcon 実ファイル（横長）でのチェック 縦長の領域 拡大', function(done) {
+    var blob =  toBlob(image10x5);
+    blob.type = 'image/png';
+
+    var $fixture = $('#fixture');
+    $fixture.fileTypeIcon({
+      file: blob,
+      imageSize: {
+        width: 20,
+        height: 20
+      }
+    });
+
+    setTimeout(function() {
+      var $image = $fixture.find('img');
+      assert.equal($image.length, 1, '画像が挿入されている');
+      assert.equal($image.css('width'), '10px');
+      assert.equal($image.css('height'), '5px');
+      assert.equal($image.css('top'), '7px');
+      assert.equal($image.css('left'), '5px');
+      done();
+    }, LOADING_WAIT);
+  });
+
+  test('fileTypeIcon 実ファイル（横長）でのチェック 縦長の領域 縮小', function(done) {
+    var blob =  toBlob(image10x5);
+    blob.type = 'image/png';
+
+    var $fixture = $('#fixture');
+    $fixture.fileTypeIcon({
+      file: blob,
+      imageSize: {
+        width: 5,
+        height: 5
+      }
+    });
+
+    setTimeout(function() {
+      var $image = $fixture.find('img');
+      assert.equal($image.length, 1, '画像が挿入されている');
+      assert.equal($image.css('width'), '5px');
+      assert.equal($image.css('height'), '2px');
+      assert.equal($image.css('top'), '1px');
+      assert.equal($image.css('left'), '0px');
+      done();
+    }, LOADING_WAIT);
+  });
 });
