@@ -5,6 +5,7 @@ suite('fileTypeIconのテスト', function() {
 
   var image5x5 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVQImWP8qNbynwENMKELUEEQAAzqAqQgfOn0AAAAAElFTkSuQmCC';
   var image5x10 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAKCAYAAAB8OZQwAAAACXBIWXMAAAsTAAALEwEAmpwYAAAANUlEQVQImb3KsQ0AMAjEQJOGFZDYh03Yf4SnDunj8mSTJFYWEQLITKqK7saA63T3FwHOhq84/7oJuc1lHdcAAAAASUVORK5CYII='
+  var image10x5 ='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAFCAYAAAB8ZH1oAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFklEQVQImWNcraf3n4EIwESMogFWCACeHgIQqtJ9lgAAAABJRU5ErkJggg==';
 
   setup(function() {
     document.body.innerHTML = __html__['test/jquery.file-type-icon.test.html'];
@@ -242,6 +243,30 @@ suite('fileTypeIconのテスト', function() {
       assert.equal($image.css('height'), '10px');
       assert.equal($image.css('top'), '5px');
       assert.equal($image.css('left'), '7px');
+      done();
+    }, LOADING_WAIT);
+  });
+
+  test('fileTypeIcon 実ファイル（横長）でのチェック 表示領域のサイズと同じ', function(done) {
+    var blob =  toBlob(image10x5);
+    blob.type = 'image/png';
+
+    var $fixture = $('#fixture');
+    $fixture.fileTypeIcon({
+      file: blob,
+      imageSize: {
+        width: 10,
+        height: 5
+      }
+    });
+
+    setTimeout(function() {
+      var $image = $fixture.find('img');
+      assert.equal($image.length, 1, '画像が挿入されている');
+      assert.equal($image.css('width'), '10px');
+      assert.equal($image.css('height'), '5px');
+      assert.equal($image.css('top'), '0px');
+      assert.equal($image.css('left'), '0px');
       done();
     }, LOADING_WAIT);
   });
