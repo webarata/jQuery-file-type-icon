@@ -3,6 +3,9 @@ suite('fileTypeIconのテスト', function() {
 
   var LOADING_WAIT = 300;
 
+  var image5x5 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVQImWP8qNbynwENMKELUEEQAAzqAqQgfOn0AAAAAElFTkSuQmCC';
+  var image5x10 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAKCAYAAAB8OZQwAAAACXBIWXMAAAsTAAALEwEAmpwYAAAANUlEQVQImb3KsQ0AMAjEQJOGFZDYh03Yf4SnDunj8mSTJFYWEQLITKqK7saA63T3FwHOhq84/7oJuc1lHdcAAAAASUVORK5CYII='
+
   setup(function() {
     document.body.innerHTML = __html__['test/jquery.file-type-icon.test.html'];
   });
@@ -147,8 +150,7 @@ suite('fileTypeIconのテスト', function() {
   });
 
   test('fileTypeIcon 実ファイル（正方形）でのチェック', function(done) {
-    var data = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAFUlEQVQImWP8qNbynwENMKELUEEQAAzqAqQgfOn0AAAAAElFTkSuQmCC';
-    var blob =  toBlob(data);
+    var blob =  toBlob(image5x5);
     blob.type = 'image/png';
 
     var $fixture = $('#fixture');
@@ -167,6 +169,79 @@ suite('fileTypeIconのテスト', function() {
       assert.equal($image.css('height'), '5px');
       assert.equal($image.css('top'), '2px');
       assert.equal($image.css('left'), '0px');
+      done();
+    }, LOADING_WAIT);
+  });
+
+  test('fileTypeIcon 実ファイル（縦長）でのチェック 表示領域のサイズと同じ', function(done) {
+    var blob =  toBlob(image5x10);
+    blob.type = 'image/png';
+
+    var $fixture = $('#fixture');
+    $fixture.fileTypeIcon({
+      file: blob,
+      imageSize: {
+        width: 5,
+        height: 10
+      }
+    });
+
+    setTimeout(function() {
+      var $image = $fixture.find('img');
+      assert.equal($image.length, 1, '画像が挿入されている');
+      assert.equal($image.css('width'), '5px');
+      assert.equal($image.css('height'), '10px');
+      assert.equal($image.css('top'), '0px');
+      assert.equal($image.css('left'), '0px');
+      done();
+    }, LOADING_WAIT);
+  });
+
+  test('fileTypeIcon 実ファイル（縦長）でのチェック 横長の領域', function(done) {
+    var blob =  toBlob(image5x10);
+    blob.type = 'image/png';
+
+    var $fixture = $('#fixture');
+    $fixture.fileTypeIcon({
+      file: blob,
+      imageSize: {
+        width: 20,
+        height: 10
+      }
+    });
+
+    setTimeout(function() {
+      var $image = $fixture.find('img');
+      assert.equal($image.length, 1, '画像が挿入されている');
+      assert.equal($image.css('width'), '5px');
+      assert.equal($image.css('height'), '10px');
+      assert.equal($image.css('top'), '0px');
+      assert.equal($image.css('left'), '7px');
+      done();
+    }, LOADING_WAIT);
+  });
+
+
+  test('fileTypeIcon 実ファイル（縦長）でのチェック 横長の領域 拡大', function(done) {
+    var blob =  toBlob(image5x10);
+    blob.type = 'image/png';
+
+    var $fixture = $('#fixture');
+    $fixture.fileTypeIcon({
+      file: blob,
+      imageSize: {
+        width: 20,
+        height: 20
+      }
+    });
+
+    setTimeout(function() {
+      var $image = $fixture.find('img');
+      assert.equal($image.length, 1, '画像が挿入されている');
+      assert.equal($image.css('width'), '5px');
+      assert.equal($image.css('height'), '10px');
+      assert.equal($image.css('top'), '5px');
+      assert.equal($image.css('left'), '7px');
       done();
     }, LOADING_WAIT);
   });
