@@ -36,8 +36,6 @@ module.exports = (grunt) ->
             ui: 'tdd'
     clean:
       all: [
-        '.sass-cache'
-        'bower_components'
         'node_modules'
         '<%= dirs.js %>'
       ]

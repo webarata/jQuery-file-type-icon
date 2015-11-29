@@ -1,4 +1,11 @@
-(function($) {
+(function (factory) {
+  'use strict';
+  if (typeof module === "object" && typeof module.exports === "object") {
+    module.exports = factory(require("jquery"), window, document);
+  } else {
+    factory(jQuery, window, document);
+  }
+}(function ($, window, document, undefined) {
   'use strict';
 
   var _defaults = {
@@ -208,4 +215,4 @@
       imageRuntime.height = natural.height * ratio[shorter] + 'px';
     }
   };
-})(jQuery);
+}));
