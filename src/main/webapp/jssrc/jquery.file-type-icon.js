@@ -1,7 +1,7 @@
 (function (factory) {
   'use strict';
-  if (typeof module === "object" && typeof module.exports === "object") {
-    module.exports = factory(require("jquery"), window, document);
+  if (typeof module === 'object' && typeof module.exports === 'object') {
+    module.exports = factory(require('jquery'), window, document);
   } else {
     factory(jQuery, window, document);
   }
