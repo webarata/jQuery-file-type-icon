@@ -1,4 +1,4 @@
-# fileTypeIcon [![Build Status](https://travis-ci.org/webarata/jQuery-file-type-icon.svg)](https://travis-ci.org/webarata/jQuery-file-type-icon) [![Coverage Status](https://coveralls.io/repos/webarata/jQuery-file-type-icon/badge.svg?branch=master&service=github)](https://coveralls.io/github/webarata/jQuery-file-type-icon?branch=master)
+# jQuery.file-type-icon [![Build Status](https://travis-ci.org/webarata/jQuery-file-type-icon.svg)](https://travis-ci.org/webarata/jQuery-file-type-icon) [![Coverage Status](https://coveralls.io/repos/webarata/jQuery-file-type-icon/badge.svg?branch=master&service=github)](https://coveralls.io/github/webarata/jQuery-file-type-icon?branch=master)
 ファイルの種類によりアイコンを表示するjQueryプラグインです。
 
 ## ライセンス
