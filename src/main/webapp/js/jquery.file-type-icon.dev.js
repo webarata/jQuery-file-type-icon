@@ -9211,6 +9211,26 @@ return jQuery;
 }));
 
 },{}],2:[function(require,module,exports){
+(function (global){
+global.jQuery = require('jquery');
+global.$ = global.jQuery;
+require('./jquery.file-type-icon');
+
+$view = $('#view');
+$('#file').on('change', function() {
+  var files = $(this).get(0).files;
+  // 複数選択はしない
+  var file = files[0];
+  $view.fileTypeIcon({
+    file: file, imageSize: {
+      width: 32,
+      height: 64
+    }
+  });
+});
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./jquery.file-type-icon":3,"jquery":1}],3:[function(require,module,exports){
 (function (factory) {
   'use strict';
   if (typeof module === 'object' && typeof module.exports === 'object') {
@@ -9430,24 +9450,4 @@ return jQuery;
   };
 }));
 
-},{"jquery":1}],3:[function(require,module,exports){
-(function (global){
-global.jQuery = require('jquery');
-global.$ = global.jQuery;
-require('./jquery.file-type-icon');
-
-$view = $('#view');
-$('#file').on('change', function() {
-  var files = $(this).get(0).files;
-  // 複数選択はしない
-  var file = files[0];
-  $view.fileTypeIcon({
-    file: file, imageSize: {
-      width: 32,
-      height: 64
-    }
-  });
-});
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./jquery.file-type-icon":2,"jquery":1}]},{},[2,3]);
+},{"jquery":1}]},{},[3,2]);

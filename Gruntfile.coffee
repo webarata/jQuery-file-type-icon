@@ -15,9 +15,9 @@ module.exports = (grunt) ->
     browserify:
       dev:
         files:
-          '<%= dirs.js %>/jquery.file-type-icon.sample.js': [
+          '<%= dirs.js %>/jquery.file-type-icon.dev.js': [
             '<%= dirs.src %>/jquery.file-type-icon.js'
-            '<%= dirs.src %>/sample.js'
+            '<%= dirs.src %>/dev.js'
           ]
     uglify:
       product:
@@ -31,11 +31,11 @@ module.exports = (grunt) ->
           banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */'
       dev:
         files:
-          '<%= dirs.js %>/jquery.file-type-icon.sample.min.js': '<%= dirs.js %>/jquery.file-type-icon.sample.js'
+          '<%= dirs.js %>/jquery.file-type-icon.dev.min.js': '<%= dirs.js %>/jquery.file-type-icon.dev.js'
         options:
           preserveComments: 'some'
           sourceMap: true
-          sourceMapName: '<%= dirs.js %>/jquery.file-type-icon.sample.min.js.map'
+          sourceMapName: '<%= dirs.js %>/jquery.file-type-icon.dev.min.js.map'
 #          sourceMapIncludeSources: true
           banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */'
     watch:
