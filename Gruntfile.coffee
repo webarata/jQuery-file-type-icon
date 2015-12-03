@@ -12,11 +12,19 @@ module.exports = (grunt) ->
         options:
           port: 8000
           hostname: '*'
+    browserify:
+      dist:
+        files:
+          '<%= dirs.js %>/jquery.file-type-icon.js': [
+            '<%= dirs.jssrc %>/jquery.file-type-icon.js'
+            '<%= dirs.jssrc %>/sample.js'
+          ]
     uglify:
       dev:
         files:
-          '<%= dirs.js %>/jquery.file-type-icon.min.js': '<%= dirs.jssrc %>/jquery.file-type-icon.js'
+          '<%= dirs.js %>/jquery.file-type-icon.min.js': '<%= dirs.js %>/jquery.file-type-icon.js'
         options:
+          preserveComments: 'some'
           sourceMap: true
           sourceMapName: '<%= dirs.js %>/jquery.file-type-icon.min.js.map'
 #          sourceMapIncludeSources: true
@@ -43,6 +51,7 @@ module.exports = (grunt) ->
         '<%= dirs.js %>'
       ]
 
+  grunt.loadNpmTasks('grunt-browserify')
   grunt.loadNpmTasks('grunt-contrib-clean')
   grunt.loadNpmTasks('grunt-contrib-connect')
   grunt.loadNpmTasks('grunt-contrib-uglify')
