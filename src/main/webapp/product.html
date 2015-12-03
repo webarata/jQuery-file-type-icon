@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+ <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>ファイルのアイコン表示</title>
+ </head>
+ <body>
+  <h1>ファイルのアイコン表示</h1>
+
+  <div><input type="file" id="file"></div>
+  <div id="view"></div>
+  <script src="../../../node_modules/jquery/dist/jquery.js"></script>
+  <script src="js/jquery.file-type-icon.min.js"></script>
+  <script>
+   $view = $('#view');
+   $('#file').on('change', function() {
+    var files = $(this).get(0).files;
+    // 複数選択はしない
+    var file = files[0];
+    $view.fileTypeIcon({
+     file: file, imageSize: {
+      width: 32,
+      height: 64
+     }
+    });
+   });
+  </script>
+ </body>
+</html>

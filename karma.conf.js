@@ -16,7 +16,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       '../../../node_modules/jquery/dist/jquery.min.js',
-      'jssrc/jquery.file-type-icon.js',
+      'src/main/webapp/src/jquery.file-type-icon.js',
       'test/**/*.js',
       'test/**/*.html',
       // 画像ファイルのロード http://karma-runner.github.io/0.12/config/files.html
@@ -41,7 +41,7 @@ module.exports = function(config) {
     preprocessors: {
       'test/**/*.js': ['browserify'],
       'test/**/*.html': ['html2js'],
-      'jssrc/jquery.file-type-icon.js': ['coverage']
+      'src/jquery.file-type-icon.js': ['coverage']
     },
 
 

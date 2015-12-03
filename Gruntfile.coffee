@@ -4,7 +4,7 @@ module.exports = (grunt) ->
     dirs:
       root: 'src/main'
       webapp: '<%= dirs.root %>/webapp'
-      jssrc: '<%= dirs.webapp %>/jssrc'
+      src: '<%= dirs.webapp %>/src'
       js: '<%= dirs.webapp %>/js'
 
     connect:
@@ -13,26 +13,35 @@ module.exports = (grunt) ->
           port: 8000
           hostname: '*'
     browserify:
-      dist:
-        files:
-          '<%= dirs.js %>/jquery.file-type-icon.js': [
-            '<%= dirs.jssrc %>/jquery.file-type-icon.js'
-            '<%= dirs.jssrc %>/sample.js'
-          ]
-    uglify:
       dev:
         files:
-          '<%= dirs.js %>/jquery.file-type-icon.min.js': '<%= dirs.js %>/jquery.file-type-icon.js'
+          '<%= dirs.js %>/jquery.file-type-icon.sample.js': [
+            '<%= dirs.src %>/jquery.file-type-icon.js'
+            '<%= dirs.src %>/sample.js'
+          ]
+    uglify:
+      product:
+        files:
+          '<%= dirs.js %>/jquery.file-type-icon.min.js': '<%= dirs.src %>/jquery.file-type-icon.js'
         options:
           preserveComments: 'some'
           sourceMap: true
           sourceMapName: '<%= dirs.js %>/jquery.file-type-icon.min.js.map'
 #          sourceMapIncludeSources: true
           banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */'
+      dev:
+        files:
+          '<%= dirs.js %>/jquery.file-type-icon.sample.min.js': '<%= dirs.js %>/jquery.file-type-icon.sample.js'
+        options:
+          preserveComments: 'some'
+          sourceMap: true
+          sourceMapName: '<%= dirs.js %>/jquery.file-type-icon.sample.min.js.map'
+#          sourceMapIncludeSources: true
+          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */'
     watch:
       scripts:
-        files: ['<%= dirs.jssc %>/*.js']
-        tasks: ['uglify']
+        files: ['<%= dirs.src %>/*.js']
+        tasks: ['dev']
         options:
           interrupt: true
     karma:
@@ -58,4 +67,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-karma')
 
-  grunt.registerTask('default', ['uglify'])
+  grunt.registerTask('default', ['uglify:product'])
+  grunt.registerTask('dev', ['browserify:dev', 'uglify:dev'])
